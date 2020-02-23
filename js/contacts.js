@@ -11,19 +11,51 @@ window.PhoneBook = {
         })
     },
 
+    deleteContact: function (id) {
+        $.ajax({
+            url: PhoneBook.API_BASE_URL + "?id="+ id,
+            method: "DELETE"
+        }).done(function () {
+            PhoneBook.getContacts();
+        })
+    },
+
+    updateContact: function (id, firstName, lastName, phone, address) {
+        let requestBody = {
+            firstName: firstName,
+            lastName: lastName,
+            phone: phone,
+            address: address
+        };
+
+        $.ajax({
+            url: PhoneBook.API_BASE_URL + "?id=" + id,
+            method: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify(requestBody)
+        }).done(function () {
+            PhoneBook.getContacts();
+
+        });
+    },
+
+
     getContactRow: function (contact) {
-    return `<tr>
-        <td>${contact.firstName}</td>
-        <td>${contact.lastName}</td>
-        <td>${contact.phone}</td>
-        <td>${contact.address}</td>
+
+            return `<tr>
+        <td id="firstName" data-firstName="firstName" onclick="">${contact.firstName}</td>
+        <td data-lastName="lastName">${contact.lastName}</td>
+        <td data-phone="phone">${contact.phone}</td>
+        <td data-address="address">${contact.address}</td>
         <td>
-        <a class="buttons" style="display: inline-flex; padding-left: 10px" data-id=${contact.id}>
+        <a id="delete" class="buttons" style="display: inline-flex; padding-left: 10px" data-id=${contact.id}>
         <i class="fas fa-trash-alt"></i></a>
-        <a class="buttons" style="display: inline-flex; padding-left: 20px" data-id=${contact.id}>
+        <a id="edit" class="buttons" style="display: inline-flex; padding-left: 20px" data-id=${contact.id}>
         <i class="fas fa-user-edit"></i></a>
         </td>
     </tr>`
+
+
     },
 
     displayContacts: function (contacts) {
@@ -57,21 +89,32 @@ window.PhoneBook = {
         })
     },
 
-    deleteContact: function (contact) {
-        $.ajax({
-            url: PhoneBook.API_BASE_URL + "?id="+ contact.id,
-            method: "DELETE"
-        }).done(function (response) {
-            PhoneBook.displayContacts(JSON.parse(response));
-        })
-    },
 
     bindEvents: function () {
         $("#adding_contact_form").submit(function (event) {
             event.preventDefault();
             PhoneBook.createContact();
-        })
+        });
 
+        $("#customers").delegate("#edit", "change", function () {
+        event.preventDefault();
+
+        let contactId = $(this).data("id");
+        let contactFirstName = $(this).data("firstName");
+        let contactLastName = $(this).data("lastName");
+        let contactPhone = $(this).data("phone");
+        let contactAddress = $(this).data("address");
+
+        PhoneBook.updateContact(contactId,contactFirstName,contactLastName,contactPhone,contactAddress);
+        });
+
+        $("#customers").delegate("#delete", "click", function (event) {
+            event.preventDefault();
+            let contactId = $(this).data("id");
+
+            PhoneBook.deleteContact(contactId);
+
+        });
     }
 };
 
