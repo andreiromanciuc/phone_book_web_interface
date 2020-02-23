@@ -16,6 +16,46 @@ header {
     height: 10vh;
 }
 
+.things{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    justify-content: space-between;
+}
+.search{
+    grid-column: 1/2;
+    grid-row: 1/2;
+    padding: 10px;
+    text-align: left;
+}
+.adding{
+    grid-column: 2/3;
+    grid-row: 1/2;
+    padding: 10px;
+    text-align: right;
+}
+.search_contact{
+    grid-column: 1/2;
+    grid-row: 2/3;
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    width: auto;
+    margin-right: auto;
+    margin-left: 0px;
+}
+.adding_contact{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    width: auto;
+    margin-right: 0px;
+    margin-left: auto;
+
+}
+
 h1 {
     margin: auto;
     font-size: 70px;
@@ -48,6 +88,12 @@ h1 {
     text-align: left;
     background-color: #45B8AC;
     color: white;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-around;
+
 }
 
 footer {

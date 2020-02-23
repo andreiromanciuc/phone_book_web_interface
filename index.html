@@ -12,32 +12,47 @@
          alt="Phone book" height="70px">
     <h1 style="font-family: 'Old English Text MT'">Phone Book</h1>
 </header>
+<div class="things">
+    <h3 style ="font-family: 'Courier New'" class="search">Search contacts by:</h3>
+    <h3 style="font-family: 'Courier New'" class="adding">Adding new contacts:</h3>
+<table class="search_contact">
+    <tr>
+        <td><input type="text" id="firstName_search" placeholder="First Name"> </td>
+        <td style ="font-family: 'Courier New'">or</td>
+        <td><input type="text" id="lastName_search" placeholder="Last Name"> </td>
+    </tr>
+</table>
+    <form id="adding_contact_form">
+<table class="adding_contact">
+    <tr>
+    <td><input id="firstName_create" type="text" placeholder="First Name" required> </td>
+    <td><input id="lastName_create" type="text" placeholder="Last Name" required> </td>
+    <td><input id="phone_create" type="tel" placeholder="Phone number" required> </td>
+    <td><input id="address_create" type="text" placeholder="Address"> </td>
+        <td><button type="submit"><i class="fas fa-user-plus"></i></button></td>
+    </tr>
+</table>
+    </form>
+</div>
 <div class="middle">
 <table id="customers">
+    <thead>
     <tr>
         <th>First name</th>
         <th>Second name</th>
         <th>Phone number</th>
         <th>Address</th>
-        <th>Email</th>
-        <th>Birthday</th>
         <th>Edit</th>
     </tr>
-    <tr>
-        <td>Ion</td>
-        <td>Covor</td>
-        <td>+456135489</td>
-        <td>gggggggg</td>
-        <td>ion.covor@gmail.com</td>
-        <td>15.02.1995</td>
-        <td><button><i class="fas fa-trash-alt">Delete</i></button>
-            <button><i class="fas fa-trash-alt">Edit</i></button>
-        </td>
-    </tr>
+    </thead>
+    <tbody>
 
+    </tbody>
 </table>
 </div>
 
 <footer style="font-family: 'Courier New'"><hr>Made by Andrei Romanciuc<br>FASTTRACKIT</footer>
+<script src="js/lib/jquery-3.4.1.js"></script>
+<script src="js/contacts.js"></script>
 </body>
 </html>
