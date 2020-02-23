@@ -56,9 +56,13 @@ header {
 
 }
 
-h1 {
-    margin: auto;
-    font-size: 70px;
+.head_name {
+    display: flex;
+    text-decoration: none;
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 60px;
     text-align: center;
     padding-bottom: 50px;
 }

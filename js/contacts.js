@@ -39,11 +39,15 @@ window.PhoneBook = {
         });
     },
 
+    editFirstName: function () {
+        document.getElementById("firstNameID").innerHTML = '<input style="text" placeholder="edit...">';
+    },
+
 
     getContactRow: function (contact) {
 
             return `<tr>
-        <td id="firstName" data-firstName="firstName" onclick="">${contact.firstName}</td>
+        <td id="firstNameID" data-firstName="firstName" onclick="PhoneBook.editFirstName()">${contact.firstName}</td>
         <td data-lastName="lastName">${contact.lastName}</td>
         <td data-phone="phone">${contact.phone}</td>
         <td data-address="address">${contact.address}</td>
@@ -96,7 +100,7 @@ window.PhoneBook = {
             PhoneBook.createContact();
         });
 
-        $("#customers").delegate("#edit", "change", function () {
+        $("#customers").delegate("#edit", "change", function (event) {
         event.preventDefault();
 
         let contactId = $(this).data("id");
