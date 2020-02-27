@@ -12,20 +12,29 @@
     <img src="https://wikiclipart.com/wp-content/uploads/2017/01/Free-telephone-clipart-the-cliparts.png"
          alt="Phone book" height="70px" >
     </a>
-    <a class="head_name" href="index.html">
+    <a class="head_name">
     <h1 style="font-family: 'Old English Text MT'">Phone Book</h1>
     </a>
 </header>
+
 <div class="things">
+
     <h3 style ="font-family: 'Courier New'" class="search">Search contacts by:</h3>
     <h3 style="font-family: 'Courier New'" class="adding">Adding new contacts:</h3>
+
+
 <table class="search_contact">
     <tr>
+        <form id="search-firstName">
         <td><input type="text" id="firstName_search" placeholder="First Name"> </td>
+    </form>
         <td style ="font-family: 'Courier New'">or</td>
+        <form id="search-lastName">
         <td><input type="text" id="lastName_search" placeholder="Last Name"> </td>
+        </form>
     </tr>
 </table>
+</form>
     <form id="adding_contact_form">
 <table class="adding_contact">
     <tr>
@@ -49,13 +58,17 @@
         <th>Edit</th>
     </tr>
     </thead>
+    <form id="update">
     <tbody id="to-delegate">
 
+
     </tbody>
+    </form>
 </table>
 </div>
 
 <footer style="font-family: 'Courier New'"><hr>Made by Andrei Romanciuc<br>FASTTRACKIT</footer>
+
 <script src="js/lib/jquery-3.4.1.js"></script>
 <script src="js/contacts.js"></script>
 </body>

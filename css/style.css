@@ -10,10 +10,10 @@ header {
     display: flex;
     align-items: center;
     text-align: center;
-    margin: auto;
-    padding: 50px;
+    margin-top: 10px;
+    padding: 10px;
     width: 90%;
-    height: 10vh;
+    height: 9vh;
 }
 
 .things{
