@@ -12,6 +12,17 @@ window.PhoneBook = {
         })
     },
 
+    deleteContact: function (id) {
+        let result = confirm("Are you sure?");
+        $.ajax({
+            url: PhoneBook.API_BASE_URL + "?id=" + id,
+            method: "DELETE"
+        }).done(function () {
+            if (result) {
+                PhoneBook.getContacts();
+            }
+        })
+    },
 
     getContactsByFirstName: function () {
         let firstName = $("#firstName_search").val();
@@ -33,20 +44,8 @@ window.PhoneBook = {
         })
     },
 
-    deleteContact: function (id) {
-        let result = confirm("Are you sure?");
-        $.ajax({
-            url: PhoneBook.API_BASE_URL + "?id=" + id,
-            method: "DELETE"
-        }).done(function () {
-            if (result) {
-                PhoneBook.getContacts();
-                location.reload();
-            }
-        })
-    },
-
     updateContact: function (id, firstName, lastName, phone, address) {
+
         let requestBody = {
             firstName: firstName,
             lastName: lastName,
@@ -61,31 +60,31 @@ window.PhoneBook = {
             data: JSON.stringify(requestBody)
         }).done(function () {
             PhoneBook.getContacts();
-            location.reload();
         });
     },
 
-    editContacts: function () {
-        document.getElementById("firstNameID").innerHTML =
-            '<input id="edit-first-name" type="text" placeholder="edit...">';
-        document.getElementById("lastNameID").innerHTML =
-            '<input id="edit-last-name" type="text" placeholder="edit...">';
-        document.getElementById("phoneID").innerHTML =
-            '<input id="edit-last-name" type="tel" placeholder="edit...">';
-        document.getElementById("addressID").innerHTML =
-            '<input id="edit-last-name" type="text" placeholder="edit...">';
-    },
-//jq/toggle
-    // sa pun fieldurile hidden linga nume si sa pun un buton de save
+
     getContactRow: function (contact) {
 
         return `<tr>
-        <td id="firstNameID" data-firstName="firstName">${contact.firstName}<input id="edit-first-name" type="text" placeholder="edit..." hidden></td>
-        <td id="lastNameID" data-lastName="lastName">${contact.lastName}</td>
-        <td id="phoneID" data-phone="phone">${contact.phone}</td>
-        <td id="addressID" data-address="address">${contact.address}</td>
+        <td id="firstNameID" data-firstName="firstName" class="trows" onclick="document.getElementById('edit-first-name').style.visibility = 'visible';">
+        ${contact.firstName}<br>
+<!--        <input id="edit-first-name" type="text" placeholder="edit First Name" style="visibility: hidden">-->
+        </td>
+        <td id="lastNameID" data-lastName="lastName" class="trows" onclick="document.getElementById('edit-last-name').style.visibility = 'visible';">
+        ${contact.lastName}<br>
+<!--        <input id="edit-last-name" type="text" placeholder="edit Last Name" style="visibility: hidden">-->
+        </td>
+        <td id="phoneID" data-phone="phone" class="trows" onclick="document.getElementById('edit-phone').style.visibility = 'visible';">
+        ${contact.phone}<br>
+<!--        <input id="edit-phone" type="tel" placeholder="edit Phone" style="visibility: hidden">-->
+        </td>
+        <td id="addressID" data-address="address" class="trows" onclick="document.getElementById('edit-address').style.visibility = 'visible';">
+        ${contact.address}<br>
+<!--        <input id="edit-address" type="text" placeholder="edit address" style="visibility: hidden">-->
+        </td>
         <td>
-        <a id="edit" class="buttons" style="display: inline-flex; padding-left: 10px" data-id=${contact.id}>
+        <a id="edit" class="buttons"style="display: inline-flex; padding-left: 10px" data-id=${contact.id}>
         <i class="fas fa-user-edit"></i></a>
         <a id="delete" class="buttons" style="display: inline-flex; padding-left: 30px" data-id=${contact.id}>
         <i class="fas fa-trash-alt"></i></a>
@@ -134,38 +133,32 @@ window.PhoneBook = {
             PhoneBook.getContactsByFirstName();
 
         });
+
         $("#search-lastName").submit(function (event) {
             event.preventDefault();
             PhoneBook.getContactsByLastName();
         });
 
-
         $("#adding_contact_form").submit(function (event) {
             event.preventDefault();
             PhoneBook.createContact();
-
         });
 
-        $("#to-delegate").delegate("#firstNameID", "click", function (event) {
+        $("#customers").delegate("#edit", "change", function (event) {
             event.preventDefault();
+            let taskId = $(this).data("id");
+            let firstName = $("#edit-first-name").val();
+            let lastName = $("#edit-last-name").val();
+            let phone = $("#edit-phone").val();
+            let address = $("#edit-address").val();
 
-            let contactId = $(this).data("id");
-            let contactFirstName = $('input[name=firstName]').val();
-            let contactLastName = $('input[name=lastName]').val();
-            let contactPhone = $('input[name=phone]').val();
-            let contactAddress = $('input[name=address]').val();
-
-            PhoneBook.updateContact(contactId, contactFirstName, contactLastName, contactPhone, contactAddress);
-
+            PhoneBook.updateContact(taskId, firstName, lastName, phone, address);
         });
 
         $("#customers").delegate("#delete", "click", function (event) {
             event.preventDefault();
             let contactId = $(this).data("id");
-
             PhoneBook.deleteContact(contactId);
-
-
         });
     }
 };

@@ -20,7 +20,7 @@
 <div class="things">
 
     <h3 style ="font-family: 'Courier New'" class="search">Search contacts by:</h3>
-    <h3 style="font-family: 'Courier New'" class="adding">Adding new contacts:</h3>
+    <h3 style="font-family: 'Courier New'" class="adding">Create new contacts:</h3>
 
 
 <table class="search_contact">
@@ -50,20 +50,31 @@
 <div class="middle">
 <table id="customers">
     <thead>
+
+    <form id="update">
+    <tr id="edit-tr" style="visibility: hidden">
+        <td><input id="edit-first-name" type="text" placeholder="edit First Name" required></td>
+        <td><input id="edit-last-name" type="text" placeholder="edit Last Name" required></td>
+        <td><input id="edit-phone" type="tel" placeholder="edit Phone" required></td>
+        <td><input id="edit-address" type="text" placeholder="edit address"></td>
+            <td><button id="save"></button></td>
+    </tr>
+    </form>
+
     <tr>
         <th>First name</th>
         <th>Second name</th>
         <th>Phone number</th>
         <th>Address</th>
-        <th>Edit</th>
+        <th>Edit List</th>
     </tr>
     </thead>
-    <form id="update">
-    <tbody id="to-delegate">
+
+    <tbody>
 
 
     </tbody>
-    </form>
+
 </table>
 </div>
 

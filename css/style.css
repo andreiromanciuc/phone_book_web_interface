@@ -69,6 +69,8 @@ header {
 .middle{
     min-height: 100%;
 }
+
+
 #customers {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -102,7 +104,7 @@ header {
 
 footer {
     margin: auto;
-    padding: 100px 10px 10px 10px;
+    padding: 20px 10px 10px 10px;
     width: 90%;
     text-align: center;
     align-items: center;
