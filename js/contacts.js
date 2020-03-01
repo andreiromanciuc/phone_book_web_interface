@@ -44,7 +44,13 @@ window.PhoneBook = {
         })
     },
 
-    updateContact: function (id, firstName, lastName, phone, address) {
+    updateContact: function (id) {
+
+
+        let firstName = $("#edit-first-name").val();
+        let lastName = $("#edit-last-name").val();
+        let phone = $("#edit-phone").val();
+        let address = $("#edit-address").val();
 
         let requestBody = {
             firstName: firstName,
@@ -60,6 +66,7 @@ window.PhoneBook = {
             data: JSON.stringify(requestBody)
         }).done(function () {
             PhoneBook.getContacts();
+
         });
     },
 
@@ -67,25 +74,37 @@ window.PhoneBook = {
     getContactRow: function (contact) {
 
         return `<tr>
-        <td id="firstNameID" data-firstName="firstName" class="trows" onclick="document.getElementById('edit-first-name').style.visibility = 'visible';">
+        <td id="firstNameID" data-firstName="firstName" class="trows" onclick="document.getElementById('edit-first-name').style.visibility = 'visible';
+        document.getElementById('edit-last-name').style.visibility = 'visible';
+        document.getElementById('edit-phone').style.visibility = 'visible';
+        document.getElementById('edit-address').style.visibility = 'visible';">
         ${contact.firstName}<br>
 <!--        <input id="edit-first-name" type="text" placeholder="edit First Name" style="visibility: hidden">-->
         </td>
-        <td id="lastNameID" data-lastName="lastName" class="trows" onclick="document.getElementById('edit-last-name').style.visibility = 'visible';">
+        <td id="lastNameID" data-lastName="lastName" class="trows" onclick="document.getElementById('edit-last-name').style.visibility = 'visible';
+        document.getElementById('edit-first-name').style.visibility = 'visible';
+        document.getElementById('edit-phone').style.visibility = 'visible';
+        document.getElementById('edit-address').style.visibility = 'visible';">
         ${contact.lastName}<br>
 <!--        <input id="edit-last-name" type="text" placeholder="edit Last Name" style="visibility: hidden">-->
         </td>
-        <td id="phoneID" data-phone="phone" class="trows" onclick="document.getElementById('edit-phone').style.visibility = 'visible';">
+        <td id="phoneID" data-phone="phone" class="trows" onclick="document.getElementById('edit-phone').style.visibility = 'visible';
+        document.getElementById('edit-first-name').style.visibility = 'visible';
+        document.getElementById('edit-last-name').style.visibility = 'visible';
+        document.getElementById('edit-address').style.visibility = 'visible';">
         ${contact.phone}<br>
 <!--        <input id="edit-phone" type="tel" placeholder="edit Phone" style="visibility: hidden">-->
         </td>
-        <td id="addressID" data-address="address" class="trows" onclick="document.getElementById('edit-address').style.visibility = 'visible';">
+        <td id="addressID" data-address="address" class="trows" onclick="document.getElementById('edit-address').style.visibility = 'visible';
+        document.getElementById('edit-first-name').style.visibility = 'visible';
+        document.getElementById('edit-last-name').style.visibility = 'visible';
+        document.getElementById('edit-phone').style.visibility = 'visible';">
         ${contact.address}<br>
 <!--        <input id="edit-address" type="text" placeholder="edit address" style="visibility: hidden">-->
         </td>
         <td>
-        <a id="edit" class="buttons"style="display: inline-flex; padding-left: 10px" data-id=${contact.id}>
-        <i class="fas fa-user-edit"></i></a>
+        <button id="edit" type="submit" class="buttons"style="display: inline-flex; padding-left: 10px" data-id=${contact.id}>
+        <i class="fas fa-user-edit"></i></button>
         <a id="delete" class="buttons" style="display: inline-flex; padding-left: 30px" data-id=${contact.id}>
         <i class="fas fa-trash-alt"></i></a>
         </td>
@@ -144,15 +163,10 @@ window.PhoneBook = {
             PhoneBook.createContact();
         });
 
-        $("#customers").delegate("#edit", "change", function (event) {
+        $("#update").delegate("#edit", "change", function (event) {
             event.preventDefault();
-            let taskId = $(this).data("id");
-            let firstName = $("#edit-first-name").val();
-            let lastName = $("#edit-last-name").val();
-            let phone = $("#edit-phone").val();
-            let address = $("#edit-address").val();
-
-            PhoneBook.updateContact(taskId, firstName, lastName, phone, address);
+            let id = $(this).data("id");
+            PhoneBook.updateContact(id);
         });
 
         $("#customers").delegate("#delete", "click", function (event) {
