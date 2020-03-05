@@ -78,28 +78,33 @@ window.PhoneBook = {
         <td id="firstNameID" data-firstName="firstName" class="trows" onclick="document.getElementById('edit-first-name').style.visibility = 'visible';
         document.getElementById('edit-last-name').style.visibility = 'visible';
         document.getElementById('edit-phone').style.visibility = 'visible';
-        document.getElementById('edit-address').style.visibility = 'visible';">
+        document.getElementById('edit-address').style.visibility = 'visible';
+        document.getElementById('save').style.visibility = 'visible';
+        ">
         ${contact.firstName}<br>
 <!--        <input id="edit-first-name" type="text" placeholder="edit First Name" style="visibility: hidden">-->
         </td>
         <td id="lastNameID" data-lastName="lastName" class="trows" onclick="document.getElementById('edit-last-name').style.visibility = 'visible';
         document.getElementById('edit-first-name').style.visibility = 'visible';
         document.getElementById('edit-phone').style.visibility = 'visible';
-        document.getElementById('edit-address').style.visibility = 'visible';">
+        document.getElementById('edit-address').style.visibility = 'visible';
+        document.getElementById('save').style.visibility = 'visible';">
         ${contact.lastName}<br>
 <!--        <input id="edit-last-name" type="text" placeholder="edit Last Name" style="visibility: hidden">-->
         </td>
         <td id="phoneID" data-phone="phone" class="trows" onclick="document.getElementById('edit-phone').style.visibility = 'visible';
         document.getElementById('edit-first-name').style.visibility = 'visible';
         document.getElementById('edit-last-name').style.visibility = 'visible';
-        document.getElementById('edit-address').style.visibility = 'visible';">
+        document.getElementById('edit-address').style.visibility = 'visible';
+        document.getElementById('save').style.visibility = 'visible';">
         ${contact.phone}<br>
 <!--        <input id="edit-phone" type="tel" placeholder="edit Phone" style="visibility: hidden">-->
         </td>
         <td id="addressID" data-address="address" class="trows" onclick="document.getElementById('edit-address').style.visibility = 'visible';
         document.getElementById('edit-first-name').style.visibility = 'visible';
         document.getElementById('edit-last-name').style.visibility = 'visible';
-        document.getElementById('edit-phone').style.visibility = 'visible';">
+        document.getElementById('edit-phone').style.visibility = 'visible';
+        document.getElementById('save').style.visibility = 'visible';">
         ${contact.address}<br>
 <!--        <input id="edit-address" type="text" placeholder="edit address" style="visibility: hidden">-->
         </td>
