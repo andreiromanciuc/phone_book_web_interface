@@ -109,7 +109,8 @@ window.PhoneBook = {
 <!--        <input id="edit-address" type="text" placeholder="edit address" style="visibility: hidden">-->
         </td>
         <td>
-        <button id="edit" type="submit" class="buttons"style="display: inline-flex; padding-left: 10px" data-id=${contact.id}>
+        <button id="edit" type="submit" class="buttons"style="display: inline-flex; 
+        padding-left: 10px; border: none; background-color: transparent" data-id=${contact.id}>
         <i class="fas fa-user-edit"></i></button>
         <a id="delete" class="buttons" style="display: inline-flex; padding-left: 30px" data-id=${contact.id}>
         <i class="fas fa-trash-alt"></i></a>
