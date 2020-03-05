@@ -66,6 +66,7 @@ window.PhoneBook = {
             data: JSON.stringify(requestBody)
         }).done(function () {
             PhoneBook.getContacts();
+            window.PhoneBook.reload(false);
 
         });
     },
@@ -163,7 +164,7 @@ window.PhoneBook = {
             PhoneBook.createContact();
         });
 
-        $("#update").delegate("#edit", "change", function (event) {
+        $("#customers").delegate("#edit", "click", function (event) {
             event.preventDefault();
             let id = $(this).data("id");
             PhoneBook.updateContact(id);
