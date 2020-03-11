@@ -44,6 +44,30 @@ window.PhoneBook = {
         })
     },
 
+    createContact: function () {
+        let firstNameValue = $("#firstName_create").val();
+        let lastNameValue = $("#lastName_create").val();
+        let phoneValue = $("#phone_create").val();
+        let addressValue = $("#address_create").val();
+
+        let requestBody = {
+            firstName: firstNameValue,
+            lastName: lastNameValue,
+            phone: phoneValue,
+            address: addressValue
+        };
+
+        $.ajax({
+            url: PhoneBook.API_BASE_URL,
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(requestBody)
+        }).done(function () {
+            PhoneBook.getContacts();
+            location.reload();
+        })
+    },
+
     updateContact: function (id) {
 
 
@@ -88,7 +112,8 @@ window.PhoneBook = {
         ${contact.address}<br>
         </td>
         <td>
-        
+        <a id="save" type="submit" style="display: inline-flex; border: none; 
+        background-color: transparent; padding-left: 10px; visibility: hidden" data-id=${contact.id}><i class="fas fa-save"></i></a>
         <a id="edit" type="submit" class="buttons"style="display: inline-flex; 
         padding-left: 10px; border: none; background-color: transparent" data-id=${contact.id}>
         <i class="fas fa-user-edit"></i></a>
@@ -105,30 +130,6 @@ window.PhoneBook = {
         contacts.forEach(contact => tableBody += PhoneBook.getContactRow(contact));
 
         $("#customers tbody").html(tableBody);
-    },
-
-    createContact: function () {
-        let firstNameValue = $("#firstName_create").val();
-        let lastNameValue = $("#lastName_create").val();
-        let phoneValue = $("#phone_create").val();
-        let addressValue = $("#address_create").val();
-
-        let requestBody = {
-            firstName: firstNameValue,
-            lastName: lastNameValue,
-            phone: phoneValue,
-            address: addressValue
-        };
-
-        $.ajax({
-            url: PhoneBook.API_BASE_URL,
-            method: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(requestBody)
-        }).done(function () {
-            PhoneBook.getContacts();
-            location.reload();
-        })
     },
 
 
@@ -164,9 +165,7 @@ window.PhoneBook = {
             document.getElementById("edit-phone").value = $.trim(phoneNumber);
             document.getElementById("edit-address").value = $.trim(address);
 
-            $(this).replaceWith('<a id="save" type="submit" style="display: inline-flex; border: none; ' +
-                'background-color: transparent; padding-left: 10px" data-id=${contact.id}><i class="fas fa-save"></i></a>')
-
+            $(this).siblings('#save').css("visibility", "visible");
 
         });
         $("#customers").delegate("#save", "click", function (event) {
