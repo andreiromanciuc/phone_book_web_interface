@@ -170,14 +170,12 @@ window.PhoneBook = {
             event.preventDefault();
             let id = $(this).data("id");
             PhoneBook.updateContact(id);
-            location.reload();
         });
 
 
         $("#customers").on('click', '#cancel', function (event) {
             event.preventDefault();
             PhoneBook.getContacts();
-            location.reload();
         });
 
 
