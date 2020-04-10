@@ -64,7 +64,6 @@ window.PhoneBook = {
             data: JSON.stringify(requestBody)
         }).done(function () {
             PhoneBook.getContacts();
-            location.reload();
         })
     },
 
@@ -90,7 +89,6 @@ window.PhoneBook = {
             data: JSON.stringify(requestBody)
         }).done(function () {
             PhoneBook.getContacts();
-            window.PhoneBook.reload(false);
 
         });
     },
